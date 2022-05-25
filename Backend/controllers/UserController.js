@@ -1,8 +1,10 @@
-// import User from "../models/UserModel.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import db from "../models/index.js";
 const User = db.users;
+const Service = db.services;
+const ServiceUser = db.service_user;
+const Op = db.Sequelize.Op;
 
 export const getUsers = async (req, res) => {
     try {
@@ -21,7 +23,7 @@ export const Register = async (req, res) => {
     const salt = await bcrypt.genSalt();
     const hashPassword = await bcrypt.hash(password, salt);
     try {
-        await User.create({
+        let user = await User.create({
 
             salutation: req.body.salutation,
             first_name: req.body.first_name,
@@ -31,8 +33,22 @@ export const Register = async (req, res) => {
             phoneNumber: req.body.phoneNumber,
             birthday: Date(req.body.birthday),
             website: req.body.website,
-            service: req.body.service
+            // service: req.body.service
         });
+
+        let service = await Service.findOne({
+            where: { name: req.body.service },
+        });
+
+        if (!service) {
+            await ServiceUser.create({
+                userId: user.id,
+                serviceId: service.id
+
+            });
+
+        }
+
         res.json({ msg: " Registration successful" });
     } catch (error) {
         console.log(error);
@@ -54,7 +70,7 @@ export const Login = async (req, res) => {
         const first_name = user[0].first_name;
         const email = user[0].email;
         const accessToken = jwt.sign({ userId, first_name, email }, process.env.ACCESS_TOKEN_SECRET, {
-            expiresIn: '20s'
+            expiresIn: '2h'
         });
         const refreshToken = jwt.sign({ userId, first_name, email }, process.env.REFRESH_TOKEN_SECRET, {
             expiresIn: '1d'
@@ -92,3 +108,31 @@ export const Logout = async (req, res) => {
     res.clearCookie('refreshToken');
     return res.sendStatus(200);
 }
+
+export const findUser = async (req, res) => {
+    try {
+        let user = await User.findOne({
+            
+            where: {
+                [Op.or]: [
+                   { id: req.body.id || null },
+                  { email: req.body.email|| null }
+                ]
+
+            }
+           
+        });
+
+        if (user) {
+            res.json(user);
+        } else {
+            res.json("User not found!");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+
+

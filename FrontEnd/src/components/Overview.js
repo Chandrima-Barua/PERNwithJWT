@@ -3,8 +3,10 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import jwt_decode from "jwt-decode";
 import { useHistory } from 'react-router-dom';
+import SideBar from './Sidenav';
+import '../App.css';
 
-const Dashboard = () => {
+const Overview = () => {
     const [first_name, setName] = useState('');
     const [token, setToken] = useState('');
     const [expire, setExpire] = useState('');
@@ -58,8 +60,10 @@ const Dashboard = () => {
 
     return (
         <div className="container mt-5">
-            <h1>Welcome Back: {first_name}</h1>
-            <button onClick={getUsers} className="button is-info">Get Users</button>
+            
+            {/* <h1>Welcome Back: {first_name}</h1> */}
+            {/* <button onClick={getUsers} className="button is-info">Get Users</button> */}
+            <SideBar/>
             <table className="table is-striped is-fullwidth">
                 <thead>
                     <tr>
@@ -83,4 +87,4 @@ const Dashboard = () => {
     )
 }
 
-export default Dashboard
+export default Overview

@@ -40,6 +40,8 @@ const Register = () => {
                 setMsg(error.response.data.msg);
             }
         }
+      
+
     }
 
     return (
@@ -57,7 +59,7 @@ const Register = () => {
                                         <select className="input" id="salutation" name="salutation" value={salutation} onChange={(e) => setSalutation(e.target.value)} required>
                                             <option value="herr">Herr</option>
                                             <option value="frau">Frau</option>
-                                            <option value="none">keine Angabe</option>
+                                            <option value="none" selected>keine Angabe</option>
                                         </select>
                                     </div>
 
@@ -66,44 +68,44 @@ const Register = () => {
                                 <div className="field mt-5">
                                     <label className="label">Vorname</label>
                                     <div className="controls">
-                                        <input type="text" className="input" value={first_name} onChange={(e) => setFirst_name(e.target.value)} />
+                                        <input type="text" className="input" value={first_name} onChange={(e) => setFirst_name(e.target.value)} required/>
                                     </div>
                                 </div>
                                 <div className="field mt-5">
                                     <label className="label">Nachname</label>
                                     <div className="controls">
-                                        <input type="text" className="input" value={last_name} onChange={(e) => setLast_name(e.target.value)} />
+                                        <input type="text" className="input" value={last_name} onChange={(e) => setLast_name(e.target.value)} required />
                                     </div>
                                 </div>
                                 <div className="field mt-5">
                                     <label className="label">Email</label>
                                     <div className="controls">
-                                        <input type="email" className="input" value={email} onChange={(e) => setEmail(e.target.value)} />
+                                        <input type="email" className="input" value={email} onChange={(e) => setEmail(e.target.value)} required/>
                                     </div>
                                 </div>
 
                                 <div className="field mt-5">
                                     <label className="label">Password</label>
                                     <div className="controls">
-                                        <input type="password" className="input" placeholder="******" value={password} onChange={(e) => setPassword(e.target.value)} />
+                                        <input type="password" className="input" placeholder="******" value={password} onChange={(e) => setPassword(e.target.value)} required />
                                     </div>
                                 </div>
                                 <div className="field mt-5">
                                     <label className="label">Confirm Password</label>
                                     <div className="controls">
-                                        <input type="password" className="input" placeholder="******" value={confPassword} onChange={(e) => setConfPassword(e.target.value)} />
+                                        <input type="password" className="input" placeholder="******" value={confPassword} onChange={(e) => setConfPassword(e.target.value)} required/>
                                     </div>
                                 </div>
                                 <div className="field mt-5">
                                     <label className="label">Mobilnummer</label>
                                     <div className="controls">
-                                        <input type="text" className="input" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
+                                        <input type="text" className="input" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} required/>
                                     </div>
                                 </div>
                                 <div className="field mt-5">
                                     <label className="label">Geburtstag</label>
                                     <div className="controls">
-                                        <input type="date" className="input" value={birthday} onChange={(e) => setBirthday(e.target.value)} />
+                                        <input type="date" className="input" value={birthday} onChange={(e) => setBirthday(e.target.value)} required/>
                                     </div>
                                 </div>
                                 <div className="field mt-5">
@@ -116,8 +118,8 @@ const Register = () => {
                                     <label className="label">Service</label>
                                     <div className="controls">
                                         <select className="input" name="service" value={service} onChange={(e) => setService(e.target.value)} required>
-                                            <option value="dj">DJ</option>
-                                            <option value="catering">Catering</option>
+                                            <option value="dj" >DJ</option>
+                                            <option value="catering" >Catering</option>
                                         </select>
                                     </div>
                                 </div>

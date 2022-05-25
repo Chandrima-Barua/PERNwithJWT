@@ -46,6 +46,12 @@ const Login = () => {
                                 <div className="field mt-5">
                                     <button className="button is-success is-fullwidth">Login</button>
                                 </div>
+                                <footer>
+                                    <p>First time?<a href="/register" >
+                                            <span style={{color:'red'}}>Create an account</span>
+                                        </a>.</p>
+
+                                </footer>
                             </form>
                         </div>
                     </div>

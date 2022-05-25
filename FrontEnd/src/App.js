@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Dashboard from "./components/Dashboard";
+import Overview from "./components/Overview";
 import Login from "./components/Login";
 import Navbar from "./components/Navbar";
 import Register from "./components/Register";
@@ -16,7 +16,7 @@ function App() {
         </Route>
         <Route path="/dashboard">
           <Navbar/>
-          <Dashboard/>
+          <Overview/>
         </Route>
       </Switch>
     </BrowserRouter>

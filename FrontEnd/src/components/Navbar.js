@@ -32,7 +32,7 @@ const Navbar = () => {
                 <div id="navbarBasicExample" className="navbar-menu">
                     <div className="navbar-start">
                         <a href="/" className="navbar-item">
-                            Home
+                            Plan Your Party
                         </a>
                     </div>
 

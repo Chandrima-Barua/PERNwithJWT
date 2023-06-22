@@ -1,0 +1,45 @@
+version: '3.4'
+services:
+  backend:
+    build: Backend
+    ports:
+      - '${BACKEND_PORT} : ${BACKEND_PORT}' 
+    depends_on:
+      - "postgres"
+    
+
+      
+  frontend:
+    build: Frontend
+    ports:
+      - '${FRONTEND_PORT} : ${FRONTEND_PORT}' 
+    environment:
+      - SERVER_URI= ${SERVER_URI}
+
+  postgres:
+    container_name: postgres
+    image: postgres
+    restart: always
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_PASSWORD= ${DB_PASSWORD}
+      - POSTGRES_USER= ${DB_USER}
+      - POSTGRES_DB= ${DB}
+
+
+  # PostgreSQL pgAdmin panel accessible at http://localhost:16543/
+  pgadmin-compose:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD} 
+    ports:
+      - "16543:80"
+    depends_on:
+      - postgres
+
+
+
+
+
